@@ -49,7 +49,7 @@ setTimeout(() => {
     ];
   }else{
     wireTerminalCheck = [
-      { three: false, resistor: false },
+      { one: false, resistor: false },
       { resistor: false, seven: false },
       { eight: false, four: false },
       { five: false, three: false },
