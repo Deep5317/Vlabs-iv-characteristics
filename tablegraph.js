@@ -217,54 +217,54 @@ function fillTable() {
   }, 500);
 }
 
-let ctx = document.getElementById("myChart").getContext("2d");
-let myChart = new Chart(ctx, {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [
-      {
-        label: "log(Is / T^2) vs 1/T",
-        data: logValues,
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderWidth: 2,
-        fill: false,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      xAxes: [
-        {
-            scaleLabel: {
-            display: true,
-            labelString: "1/T (1/K)",
-          },
-        },
-      ],
-      yAxes: [
-        {
-            ticks: {
-                beginAtZero: true, // Start y-axis from 0
-                // min: 0, // Set minimum value for y-axis
-                // max: 10,
-              },
-            scaleLabel: {
-            display: true,
-            labelString: "log(Is / T^2)",
-            beginAtZero: true,
-          },
-        },
-      ],
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-    animation:{
-        duration:1
-    }
-  },
-});
+// let ctx = document.getElementById("myChart").getContext("2d");
+// let myChart = new Chart(ctx, {
+//   type: "line",
+//   data: {
+//     labels: xValues,
+//     datasets: [
+//       {
+//         label: "log(Is / T^2) vs 1/T",
+//         data: logValues,
+//         borderColor: "rgba(75, 192, 192, 1)",
+//         backgroundColor: "rgba(75, 192, 192, 0.2)",
+//         borderWidth: 2,
+//         fill: false,
+//       },
+//     ],
+//   },
+//   options: {
+//     scales: {
+//       xAxes: [
+//         {
+//             scaleLabel: {
+//             display: true,
+//             labelString: "1/T (1/K)",
+//           },
+//         },
+//       ],
+//       yAxes: [
+//         {
+//             ticks: {
+//                 beginAtZero: true, // Start y-axis from 0
+//                 // min: 0, // Set minimum value for y-axis
+//                 // max: 10,
+//               },
+//             scaleLabel: {
+//             display: true,
+//             labelString: "log(Is / T^2)",
+//             beginAtZero: true,
+//           },
+//         },
+//       ],
+//     },
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     animation:{
+//         duration:1
+//     }
+//   },
+// });
 
 
 // let ctx = document.getElementById("myChart").getContext("2d");
@@ -344,79 +344,128 @@ function openFullscreen() {
 }
 
 
-async function downloadGraphAndObservations() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+// async function downloadGraphAndObservations() {
+//     const { jsPDF } = window.jspdf;
+//     const doc = new jsPDF();
 
-    // Set background color
-    doc.setFillColor(0, 123, 255); // Blue color (RGB)
-    doc.rect(10, 5, 190, 10, 'F');
-    // Add a header with black text
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(255, 255, 255); // Set text color to black
-    doc.setFontSize(20); // Set font size for the header
-    doc.text("Observations Table", 75, 12); // Add text at x=10, y=10
+//     // Set background color
+//     doc.setFillColor(0, 123, 255); // Blue color (RGB)
+//     doc.rect(10, 5, 190, 10, 'F');
+//     // Add a header with black text
+//     doc.setFont("helvetica", "bold");
+//     doc.setTextColor(255, 255, 255); // Set text color to black
+//     doc.setFontSize(20); // Set font size for the header
+//     doc.text("Observations Table", 75, 12); // Add text at x=10, y=10
 
-    //Add the table head
-    // const tableHead = await html2canvas(document.querySelector("#tablehead"), {
-    //     scale: 2,
-    // });
-    // const tableheadData = tableHead.toDataURL("image/png");
-    // doc.addImage(tableheadData, "PNG", 10,5 , 190, 20);
-    // Add the observation table
-    const tableCanvas = await html2canvas(document.querySelector("#table1"), {
-        scale: 2,
-    });
-    const tableImgData = tableCanvas.toDataURL("image/png");
-    doc.addImage(tableImgData, "PNG", 15, 17, 180, 120);
+//     //Add the table head
+//     // const tableHead = await html2canvas(document.querySelector("#tablehead"), {
+//     //     scale: 2,
+//     // });
+//     // const tableheadData = tableHead.toDataURL("image/png");
+//     // doc.addImage(tableheadData, "PNG", 10,5 , 190, 20);
+//     // Add the observation table
+//     const tableCanvas = await html2canvas(document.querySelector("#table1"), {
+//         scale: 2,
+//     });
+//     const tableImgData = tableCanvas.toDataURL("image/png");
+//     doc.addImage(tableImgData, "PNG", 15, 17, 180, 120);
 
-    // Add the graph
-    const chartImage = myChart.toBase64Image();
-    // doc.addPage();
+//     // Add the graph
+//     const chartImage = myChart.toBase64Image();
+//     // doc.addPage();
 
-    // //Add the graph head
-    // Set background color
-    doc.setFillColor(0, 123, 255); // Blue color (RGB)
-    doc.rect(10, 140, 190, 10, 'F');
-    // Add a header with black text
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(255, 255, 255); // Set text color to black
-    doc.setFontSize(20); // Set font size for the header
-    doc.text("Graph", 95, 147); // Add text at x=10, y=10
+//     // //Add the graph head
+//     // Set background color
+//     doc.setFillColor(0, 123, 255); // Blue color (RGB)
+//     doc.rect(10, 140, 190, 10, 'F');
+//     // Add a header with black text
+//     doc.setFont("helvetica", "bold");
+//     doc.setTextColor(255, 255, 255); // Set text color to black
+//     doc.setFontSize(20); // Set font size for the header
+//     doc.text("Graph", 95, 147); // Add text at x=10, y=10
 
-    doc.addImage(chartImage, "PNG", 25, 150, 150, 120);
+//     doc.addImage(chartImage, "PNG", 25, 150, 150, 120);
 
     
-    doc.addPage();
-    //calculation page
-    //Add the labels
-    doc.setFillColor(0, 123, 255); // Blue color (RGB)
-    doc.rect(10, 5, 190, 10, 'F');
-    // Add a header with black text
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(255, 255, 255); // Set text color to black
-    doc.setFontSize(20); // Set font size for the header
-    doc.text("Calculation", 75, 12);
-      document.querySelector(".calcbtn").style.display="none";
-    const calc = await html2canvas(document.querySelector(".formula"), {
-      scale: 2,
+//     doc.addPage();
+//     //calculation page
+//     //Add the labels
+//     doc.setFillColor(0, 123, 255); // Blue color (RGB)
+//     doc.rect(10, 5, 190, 10, 'F');
+//     // Add a header with black text
+//     doc.setFont("helvetica", "bold");
+//     doc.setTextColor(255, 255, 255); // Set text color to black
+//     doc.setFontSize(20); // Set font size for the header
+//     doc.text("Calculation", 75, 12);
+//       document.querySelector(".calcbtn").style.display="none";
+//     const calc = await html2canvas(document.querySelector(".formula"), {
+//       scale: 2,
+//   });
+//   const calcimg = calc.toDataURL("image/png");
+//   doc.addImage(calcimg, "PNG", 15, 17, 180, 120);
+
+
+//     // Save the PDF
+//     doc.save("observations_and_graph.pdf");
+//     document.querySelector(".calcbtn").style.display="block";
+// }
+
+// // Add event listener to the download button
+// document.getElementById("download").addEventListener("click", downloadGraphAndObservations);
+
+
+// document.getElementById('inlineFormSelectPref').addEventListener('change', function() {
+//   var contentUrl = this.value;
+//   document.getElementById('main-svg').data = contentUrl;
+// });
+
+const range = document.getElementById('range');
+
+  range.addEventListener('input', (event) => {
+
+    if(sessionStorage.getItem("circuitComplete") == "true"){
+      const newIndex = event.target.value;
+      localStorage.setItem("newIndex",newIndex)
+    }
+    else{
+      alert("Complete the circuit first")
+    }
   });
-  const calcimg = calc.toDataURL("image/png");
-  doc.addImage(calcimg, "PNG", 15, 17, 180, 120);
 
+  document.getElementById("addtable").addEventListener("click", addTable);
+let rowCountIndex=0;
+let idx;
+  function addTable(){
+    if(sessionStorage.getItem("circuitComplete") === "true"){
+      if(localStorage.getItem("type")== "false"){
+        idx=1;
+      }
+      else{
+        idx=2;
+      }
+        srno = document.getElementsByClassName(`srno${idx}`)[rowCountIndex];
+        current = document.getElementsByClassName(`curr${idx}`)[rowCountIndex];
+        voltage = document.getElementsByClassName(`voltage${idx}`)[rowCountIndex];
+        
+        
+        let curr = localStorage.getItem("current")
+        let volt = localStorage.getItem("voltage")
+  
+        srno.value =rowCountIndex+1;
+        current.value = curr;
+        voltage.value = volt;
+        rowCountIndex++;
+    }
+    else{
+      alert("Complete the circuit first")
+    }
+    
+  }
 
-    // Save the PDF
-    doc.save("observations_and_graph.pdf");
-    document.querySelector(".calcbtn").style.display="block";
-}
-
-// Add event listener to the download button
-document.getElementById("download").addEventListener("click", downloadGraphAndObservations);
-
-
-document.getElementById('inlineFormSelectPref').addEventListener('change', function() {
-  var contentUrl = this.value;
-  document.getElementById('main-svg').data = contentUrl;
-});
-
-
+  document.getElementById("inlineFormSelectPref").addEventListener("change", function () {
+     
+      var contentUrl = this.value;
+      document.getElementById("main-svg").data = contentUrl;
+      rowCountIndex =0
+    // localStorage.setItem("diodetype", contentUrl);
+  });

@@ -63,6 +63,7 @@ setTimeout(() => {
 }, 2000);
 
 function enablingSequence(sequenceNum) {
+  sessionStorage.setItem("circuitComplete",false)
   if(document.querySelector(".forward")){
     localStorage.setItem("type",false);
   }else{
@@ -155,12 +156,15 @@ function checkbtnPressed(btnNum) {
     document.getElementById("power-btn").style.strokeWidth = "0%";
   }
   if (btnPressed[0] && btnPressed[1]) {
-    if(document.querySelector(".forward")){
-      startWorkingForward();
-    }
-    else{
-      startWorkingReverse();
-    }
+    
+    sessionStorage.setItem("circuitComplete",true)
+
+    // if(document.querySelector(".forward")){
+    //   // startWorkingForward();
+    // }
+    // else{
+    //   // startWorkingReverse();
+    // }
   }
 }
 
@@ -170,9 +174,7 @@ function checkbtnPressed(btnNum) {
 //     document.getElementById('key2').onclick = function(){}
 //     document.getElementById('keyBase2').onclick = function(){}
 // }
-let curarr = [
-  0,0,0,0,0.4,0.7,2.3,5.5,15.8,18,18.9
-];
+
 function startWorkingForward() {
   let volttext = document.getElementById("volt");
   let currtext = document.getElementById("curr");
@@ -247,4 +249,38 @@ function filldata(srno, volt, curr) {
   rowData.curr = curr;
   console.log(srno);
   localStorage.setItem("rowData", JSON.stringify(rowData));
+}
+
+
+//ye wala code range ke sath ke lia hai
+
+setTimeout(() => {
+  rangeSelector();
+}, 100);
+const voltarr =[0.1,0.2,0.3,0.4,0.5,0.55,0.60,0.65,0.70,0.75]
+const curarr = [
+  0,0,0,0,0.4,0.7,2.3,5.5,15.8,18,18.9
+];
+
+function rangeSelector(){
+  newIndexinterval = setInterval(() => {
+    let newIndex = localStorage.getItem("newIndex");// Retrieve newIndex
+    newIndex = Math.floor(newIndex / 10); // Map to range [1, 10]
+    
+    // Ensure newIndex stays within bounds of the array
+    if (newIndex < 1 || newIndex > 10) {
+      console.error("newIndex out of range");
+      return; // Skip this iteration if out of bounds
+    }
+    
+    let volttext = document.getElementById("volt");
+    let currtext = document.getElementById("curr");
+    volttext.textContent = voltarr[newIndex - 1]; // Adjust for 0-based index
+    let curr =Math.abs(curarr[newIndex-1] - getRndInteger(0.01,0.03)) 
+    currtext.textContent = curr.toFixed(2)
+    let currcopy  = curr.toFixed(2)
+    console.log(currcopy)
+    localStorage.setItem("current", currcopy)
+    localStorage.setItem("voltage", voltarr[newIndex - 1])
+},500)
 }
