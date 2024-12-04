@@ -171,12 +171,42 @@ function checkbtnPressed(btnNum) {
 //     document.getElementById('keyBase2').onclick = function(){}
 // }
 let curarr = [
-  7.83, 8.46, 9.01, 10.3, 11.8, 13.8, 15.2, 17.8, 19.5, 22.4, 24.6, 27.2, 28.9,
-  32.4, 36.5, 40.8, 44.3, 48.1, 52.2, 56.1, 60.9, 64.2, 68.13, 72.4, 77.9, 85.3,
-  91.4, 99.5, 102.4, 109.5, 116.7, 123.5, 126.6, 138.7, 145.4, 153.6, 158.7,
-  165.4, 171.3, 175.8, 175.8,
+  0,0,0,0,0.4,0.7,2.3,5.5,15.8,18,18.9
 ];
 function startWorkingForward() {
+  let volttext = document.getElementById("volt");
+  let currtext = document.getElementById("curr");
+  var srno = 0;
+  let i = 0;
+
+  let volt = 0.0;
+  let curr = 0.0;
+  let intervalId = setInterval(() => {
+    
+    if (volt < 0.4) {
+      volt += 0.1;
+      curr = curarr[i++] + getRndInteger(0,0.1);
+    } else {
+      volt += 0.05;
+      curr = curarr[i++] + getRndInteger(0.5, 1.5);
+    }
+    volttext.textContent = volt.toFixed(2);
+    currtext.textContent = curr;
+    filldata(srno, volt, curr);
+    srno++;
+    console.log("fill data callede");
+
+    currtext.textContent = curr.toFixed(2);
+    // Stop the interval after reaching a certain temprature
+    if (volt >= 0.70) {
+      clearInterval(intervalId);
+    }
+  }, 1000);
+}
+
+
+
+function startWorkingReverse() {
   let volttext = document.getElementById("volt");
   let currtext = document.getElementById("curr");
   var srno = 0;
@@ -203,40 +233,9 @@ function startWorkingForward() {
       clearInterval(intervalId);
     }
   }, 1000);
-}
 
 
-
-function startWorkingReverse() {
-  // let volttext = document.getElementById("volt");
-  // let currtext = document.getElementById("curr");
-  // var srno = 0;
-  // let i = 0;
-
-  // let volt = 0.0;
-  // let curr = 0.0;
-  // let intervalId = setInterval(() => {
-  //   curr = curarr[i++] - getRndInteger(0.5, 1.5);
-  //   if (volt < 0.4) {
-  //     volt += 0.1;
-  //   } else {
-  //     volt += 0.2;
-  //   }
-  //   volttext.textContent = volt.toFixed(2);
-  //   currtext.textContent = curr;
-  //   filldata(srno, volt, curr);
-  //   srno++;
-  //   console.log("fill data callede");
-
-  //   currtext.textContent = curr.toFixed(2);
-  //   // Stop the interval after reaching a certain temprature
-  //   if (volt >= 2.5) {
-  //     clearInterval(intervalId);
-  //   }
-  // }, 1000);
-
-
-  alert("reverse ka data hai dont worry bhai")
+  // alert("reverse ka data hai dont worry bhai")
 }
 
 
