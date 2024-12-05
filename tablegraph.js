@@ -344,74 +344,79 @@ function openFullscreen() {
 }
 
 
-// async function downloadGraphAndObservations() {
-//     const { jsPDF } = window.jspdf;
-//     const doc = new jsPDF();
+async function downloadGraphAndObservations() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-//     // Set background color
-//     doc.setFillColor(0, 123, 255); // Blue color (RGB)
-//     doc.rect(10, 5, 190, 10, 'F');
-//     // Add a header with black text
-//     doc.setFont("helvetica", "bold");
-//     doc.setTextColor(255, 255, 255); // Set text color to black
-//     doc.setFontSize(20); // Set font size for the header
-//     doc.text("Observations Table", 75, 12); // Add text at x=10, y=10
+    // Set background color
+    doc.setFillColor(0, 123, 255); // Blue color (RGB)
+    doc.rect(10, 5, 190, 10, 'F');
+    // Add a header with black text
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(255, 255, 255); // Set text color to black
+    doc.setFontSize(20); // Set font size for the header
+    doc.text("Observations Table", 75, 12); // Add text at x=10, y=10
 
-//     //Add the table head
-//     // const tableHead = await html2canvas(document.querySelector("#tablehead"), {
-//     //     scale: 2,
-//     // });
-//     // const tableheadData = tableHead.toDataURL("image/png");
-//     // doc.addImage(tableheadData, "PNG", 10,5 , 190, 20);
-//     // Add the observation table
-//     const tableCanvas = await html2canvas(document.querySelector("#table1"), {
-//         scale: 2,
-//     });
-//     const tableImgData = tableCanvas.toDataURL("image/png");
-//     doc.addImage(tableImgData, "PNG", 15, 17, 180, 120);
+    //Add the table head
+    // const tableHead = await html2canvas(document.querySelector("#tablehead"), {
+    //     scale: 2,
+    // });
+    // const tableheadData = tableHead.toDataURL("image/png");
+    // doc.addImage(tableheadData, "PNG", 10,5 , 190, 20);
+    // Add the observation table
+    const tableCanvas1 = await html2canvas(document.querySelector("#table1"), {
+        scale: 2,
+    });
+    const tableImgData1 = tableCanvas1.toDataURL("image/png");
+    doc.addImage(tableImgData1, "PNG", 15, 17, 180, 120);
+    const tableCanvas2 = await html2canvas(document.querySelector("#table2"), {
+      scale: 2,
+  });
+  const tableImgData2 = tableCanvas2.toDataURL("image/png");
+  doc.addImage(tableImgData2, "PNG", 15, 150, 180, 120);
 
-//     // Add the graph
-//     const chartImage = myChart.toBase64Image();
-//     // doc.addPage();
+    // Add the graph
+    // const chartImage = myChart.toBase64Image();
+    // doc.addPage();
 
-//     // //Add the graph head
-//     // Set background color
-//     doc.setFillColor(0, 123, 255); // Blue color (RGB)
-//     doc.rect(10, 140, 190, 10, 'F');
-//     // Add a header with black text
-//     doc.setFont("helvetica", "bold");
-//     doc.setTextColor(255, 255, 255); // Set text color to black
-//     doc.setFontSize(20); // Set font size for the header
-//     doc.text("Graph", 95, 147); // Add text at x=10, y=10
+  //   // //Add the graph head
+  //   // Set background color
+  //   doc.setFillColor(0, 123, 255); // Blue color (RGB)
+  //   doc.rect(10, 140, 190, 10, 'F');
+  //   // Add a header with black text
+  //   doc.setFont("helvetica", "bold");
+  //   doc.setTextColor(255, 255, 255); // Set text color to black
+  //   doc.setFontSize(20); // Set font size for the header
+  //   doc.text("Graph", 95, 147); // Add text at x=10, y=10
 
-//     doc.addImage(chartImage, "PNG", 25, 150, 150, 120);
+  //   doc.addImage(chartImage, "PNG", 25, 150, 150, 120);
 
     
-//     doc.addPage();
-//     //calculation page
-//     //Add the labels
-//     doc.setFillColor(0, 123, 255); // Blue color (RGB)
-//     doc.rect(10, 5, 190, 10, 'F');
-//     // Add a header with black text
-//     doc.setFont("helvetica", "bold");
-//     doc.setTextColor(255, 255, 255); // Set text color to black
-//     doc.setFontSize(20); // Set font size for the header
-//     doc.text("Calculation", 75, 12);
-//       document.querySelector(".calcbtn").style.display="none";
-//     const calc = await html2canvas(document.querySelector(".formula"), {
-//       scale: 2,
-//   });
-//   const calcimg = calc.toDataURL("image/png");
-//   doc.addImage(calcimg, "PNG", 15, 17, 180, 120);
+  //   doc.addPage();
+  //   //calculation page
+  //   //Add the labels
+  //   doc.setFillColor(0, 123, 255); // Blue color (RGB)
+  //   doc.rect(10, 5, 190, 10, 'F');
+  //   // Add a header with black text
+  //   doc.setFont("helvetica", "bold");
+  //   doc.setTextColor(255, 255, 255); // Set text color to black
+  //   doc.setFontSize(20); // Set font size for the header
+  //   doc.text("Calculation", 75, 12);
+  //     document.querySelector(".calcbtn").style.display="none";
+  //   const calc = await html2canvas(document.querySelector(".formula"), {
+  //     scale: 2,
+  // });
+  // const calcimg = calc.toDataURL("image/png");
+  // doc.addImage(calcimg, "PNG", 15, 17, 180, 120);
 
 
-//     // Save the PDF
-//     doc.save("observations_and_graph.pdf");
-//     document.querySelector(".calcbtn").style.display="block";
-// }
+    // Save the PDF
+    doc.save("observations_and_graph.pdf");
+    // document.querySelector(".calcbtn").style.display="block";
+}
 
-// // Add event listener to the download button
-// document.getElementById("download").addEventListener("click", downloadGraphAndObservations);
+// Add event listener to the download button
+document.getElementById("download").addEventListener("click", downloadGraphAndObservations);
 
 
 // document.getElementById('inlineFormSelectPref').addEventListener('change', function() {
@@ -462,10 +467,26 @@ let idx;
     
   }
 
-  document.getElementById("inlineFormSelectPref").addEventListener("change", function () {
+  // document.getElementById("inlineFormSelectPref").addEventListener("change", function () {
      
-      var contentUrl = this.value;
-      document.getElementById("main-svg").data = contentUrl;
-      rowCountIndex =0
-    // localStorage.setItem("diodetype", contentUrl);
+  //     var contentUrl = this.value;
+  //     document.getElementById("main-svg").data = contentUrl;
+  //     rowCountIndex =0
+  //   // localStorage.setItem("diodetype", contentUrl);
+  // });
+
+  document.querySelectorAll('.dropdown-item').forEach((item) => {
+    item.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default anchor behavior
+      const selectedValue = this.getAttribute('data-value');
+      const dropdownButton = document.getElementById('dropdownMenuButton');
+  
+      // Update the dropdown button's text to show the selected option
+      dropdownButton.textContent = this.textContent;
+  
+      // Perform actions with the selected value
+      console.log('Selected bias type:', selectedValue);
+      // Example: Update the SVG displayed
+      document.getElementById('main-svg').setAttribute('data', selectedValue);
+    });
   });

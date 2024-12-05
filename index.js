@@ -258,9 +258,10 @@ setTimeout(() => {
   rangeSelector();
 }, 100);
 const voltarr =[0.1,0.2,0.3,0.4,0.5,0.55,0.60,0.65,0.70,0.75]
-const curarr = [
+const curarrforward = [
   0,0,0,0,0.4,0.7,2.3,5.5,15.8,18,18.9
 ];
+const currreverse = [1,1,1,0,0.4,0.7,2.3,15.5,15.8,25,35.9]
 
 function rangeSelector(){
   newIndexinterval = setInterval(() => {
@@ -273,13 +274,22 @@ function rangeSelector(){
       return; // Skip this iteration if out of bounds
     }
     
+
     let volttext = document.getElementById("volt");
     let currtext = document.getElementById("curr");
+
     volttext.textContent = voltarr[newIndex - 1]; // Adjust for 0-based index
-    let curr =Math.abs(curarr[newIndex-1] - getRndInteger(0.01,0.03)) 
-    currtext.textContent = curr.toFixed(2)
+    let curr=0;
+    if(localStorage.getItem("type")==="false"){
+      curr =Math.abs(curarrforward[newIndex-1] - getRndInteger(0.01,0.03)) 
+      currtext.textContent = curr.toFixed(2)
+    }else{
+      curr =Math.abs(currreverse[newIndex-1] - getRndInteger(0.01,0.03)) 
+      currtext.textContent = curr.toFixed(2) 
+    }
     let currcopy  = curr.toFixed(2)
-    console.log(currcopy)
+    
+
     localStorage.setItem("current", currcopy)
     localStorage.setItem("voltage", voltarr[newIndex - 1])
 },500)
