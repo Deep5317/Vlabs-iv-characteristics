@@ -12,18 +12,18 @@
 
 // function fillTable(tabledata){
 //     filltableintrval = setInterval(() => {
-//         if(localStorage.getItem("fullScreen") == 'true'){
+//         if(sessionStorage.getItem("fullScreen") == 'true'){
 //             snackbarFunction("Put the key and press on the Power Supply button and Stopwatch button to begin.")
-//             localStorage.setItem("fullScreen", false)
+//             sessionStorage.setItem("fullScreen", false)
 //             setTimeout(() => {
 //                 snackbarFunction("Readings are automatically recorded in the Table and Graph will be plotted.")
 //             }, 13000);
 //         }
-//         if(localStorage.getItem("transitionDis") == 'true'){
+//         if(sessionStorage.getItem("transitionDis") == 'true'){
 //             snackbarFunction("Since the Supercapcitor is Fully Charged, put the Discharge key to discharge the Supercapacitor")
-//             localStorage.setItem("transitionDis", false)
+//             sessionStorage.setItem("transitionDis", false)
 //         }
-//         var rowData = JSON.parse(localStorage.getItem('rowData'))
+//         var rowData = JSON.parse(sessionStorage.getItem('rowData'))
 //         if(rowData.volts && rowData.sno < 8){
 //             if(voltTriggger < rowData.volts){
 //                 voltTriggger = rowData.volts
@@ -136,11 +136,11 @@ setTimeout(() => {
 
 function fillTable() {
   filltableintrval = setInterval(() => {
-    if (localStorage.getItem("fullScreen") == "true") {
+    if (sessionStorage.getItem("fullScreen") == "true") {
       snackbarFunction(
         "Put the key and press on the Power Supply button and Heater button to begin."
       );
-      localStorage.setItem("fullScreen", false);
+      sessionStorage.setItem("fullScreen", false);
       setTimeout(() => {
         snackbarFunction(
           "Readings are automatically recorded in the Table and Graph will be plotted."
@@ -148,13 +148,13 @@ function fillTable() {
       }, 13000);
     }
 
-    if(localStorage.getItem("type")== "false"){
+    if(sessionStorage.getItem("type")== "false"){
       idx=1;
     }
     else{
       idx=2;
     }
-    var rowData = JSON.parse(localStorage.getItem("rowData"));
+    var rowData = JSON.parse(sessionStorage.getItem("rowData"));
     if ( rowData.volt && rowData.srno < 15) {
       srno = document.getElementsByClassName(`srno${idx}`)[rowData.srno];
       current = document.getElementsByClassName(`curr${idx}`)[rowData.srno];
@@ -430,7 +430,7 @@ const range = document.getElementById('range');
 
     if(sessionStorage.getItem("circuitComplete") == "true"){
       const newIndex = event.target.value;
-      localStorage.setItem("newIndex",newIndex)
+      sessionStorage.setItem("newIndex",newIndex)
     }
     else{
       alert("Complete the circuit first")
@@ -442,7 +442,7 @@ let rowCountIndex=0;
 let idx;
   function addTable(){
     if(sessionStorage.getItem("circuitComplete") === "true"){
-      if(localStorage.getItem("type")== "false"){
+      if(sessionStorage.getItem("type")== "false"){
         idx=1;
       }
       else{
@@ -453,8 +453,8 @@ let idx;
         voltage = document.getElementsByClassName(`voltage${idx}`)[rowCountIndex];
         
         
-        let curr = localStorage.getItem("current")
-        let volt = localStorage.getItem("voltage")
+        let curr = sessionStorage.getItem("current")
+        let volt = sessionStorage.getItem("voltage")
   
         srno.value =rowCountIndex+1;
         current.value = curr;
@@ -472,7 +472,7 @@ let idx;
   //     var contentUrl = this.value;
   //     document.getElementById("main-svg").data = contentUrl;
   //     rowCountIndex =0
-  //   // localStorage.setItem("diodetype", contentUrl);
+  //   // sessionStorage.setItem("diodetype", contentUrl);
   // });
 
   document.querySelectorAll('.dropdown-item').forEach((item) => {

@@ -19,7 +19,7 @@ div object{
     padding-left: 0px !important;
 }
 
-#stopwatch-button, #power-btn, #checker{
+#stopwatch-button, #power-btn, #checker,#image1-7{
     cursor: pointer;
 }
 
@@ -209,11 +209,11 @@ tr{
 }
 
 .five{
-    transform-origin:-1147px 210px;
+    transform-origin:-1040px 150px;
 }
 
 .six{
-    transform-origin:-1390px 290px;
+    transform-origin:-1330px 315px;
 }
 .seven{
     transform-origin: -1093px -105px;
@@ -222,7 +222,7 @@ tr{
     transform-origin: -1009px -105px;
 }
 .resistor{
-    transform-origin: 115px -234px;
+    transform-origin: 215px -300px;
 }
 
 .capacitor{

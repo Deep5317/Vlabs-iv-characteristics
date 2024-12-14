@@ -28,8 +28,8 @@ var xValues = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360];
 sequenceNum = 0;
 
 var rowData = { sno: 0, curr: 0, volts: 0 };
-localStorage.setItem("rowData", JSON.stringify(rowData));
-localStorage.setItem("fullScreen", false);
+sessionStorage.setItem("rowData", JSON.stringify(rowData));
+sessionStorage.setItem("fullScreen", false);
 
 
 var btnPressed = [false, false];
@@ -51,9 +51,9 @@ setTimeout(() => {
     wireTerminalCheck = [
       { one: false, resistor: false },
       { resistor: false, seven: false },
-      { eight: false, four: false },
-      { five: false, three: false },
-      { seven: false, five: false },
+      { seven: false, three: false },
+      { five: false, four: false },
+      { eight: false, five: false },
       { eight: false, resistor: false },
       { resistor: false, six: false },
       { two: false, six: false },
@@ -65,9 +65,9 @@ setTimeout(() => {
 function enablingSequence(sequenceNum) {
   sessionStorage.setItem("circuitComplete",false)
   if(document.querySelector(".forward")){
-    localStorage.setItem("type",false);
+    sessionStorage.setItem("type",false);
   }else{
-    localStorage.setItem("type",true);
+    sessionStorage.setItem("type",true);
   }
 
   if (sequenceNum <= wireTerminalCheck.length) {
@@ -141,7 +141,7 @@ function replacement() {
     checkbtnPressed(1);
     keyPut();
   };
-  localStorage.setItem("fullScreen", true);
+  sessionStorage.setItem("fullScreen", true);
 }
 
 function getRndInteger(min, max) {
@@ -243,12 +243,12 @@ function startWorkingReverse() {
 
 function filldata(srno, volt, curr) {
   rowData = { srno: 0, volt: 0, curr: 0 };
-  localStorage.setItem("rowData", JSON.stringify(rowData));
+  sessionStorage.setItem("rowData", JSON.stringify(rowData));
   rowData.srno = srno;
   rowData.volt = volt;
   rowData.curr = curr;
   console.log(srno);
-  localStorage.setItem("rowData", JSON.stringify(rowData));
+  sessionStorage.setItem("rowData", JSON.stringify(rowData));
 }
 
 
@@ -265,7 +265,11 @@ const currreverse = [1,1,1,0,0.4,0.7,2.3,15.5,15.8,25,35.9]
 
 function rangeSelector(){
   newIndexinterval = setInterval(() => {
-    let newIndex = localStorage.getItem("newIndex");// Retrieve newIndex
+
+    const img = document.getElementById('image1-7');
+    let imgxcor = img.getAttribute("x")
+
+    let newIndex = sessionStorage.getItem("newIndex");// Retrieve newIndex
     newIndex = Math.floor(newIndex / 10); // Map to range [1, 10]
     
     // Ensure newIndex stays within bounds of the array
@@ -279,8 +283,10 @@ function rangeSelector(){
     let currtext = document.getElementById("curr");
 
     volttext.textContent = voltarr[newIndex - 1]; // Adjust for 0-based index
+    imgxcor = 77 + ( newIndex * 0.5)  
+    img.setAttribute('x', `${imgxcor}`);
     let curr=0;
-    if(localStorage.getItem("type")==="false"){
+    if(sessionStorage.getItem("type")==="false"){
       curr =Math.abs(curarrforward[newIndex-1] - getRndInteger(0.01,0.03)) 
       currtext.textContent = curr.toFixed(2)
     }else{
@@ -290,7 +296,7 @@ function rangeSelector(){
     let currcopy  = curr.toFixed(2)
     
 
-    localStorage.setItem("current", currcopy)
-    localStorage.setItem("voltage", voltarr[newIndex - 1])
+    sessionStorage.setItem("current", currcopy)
+    sessionStorage.setItem("voltage", voltarr[newIndex - 1])
 },500)
 }
