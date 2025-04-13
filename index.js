@@ -1,14 +1,12 @@
 // 0->one 1->two 2->three 3->four
 
 wireTerminalCheck = [
-  { one: false, resistor: false },
-  { resistor: false, seven: false },
-  { eight: false, four: false },
-  { five: false, three: false },
-  { seven: false, five: false },
-  { eight: false, resistor: false },
-  { resistor: false, six: false },
-  { two: false, six: false },
+  { one: false, one: false },
+  { three: false, four: false },
+  { five: false, six: false },
+  { seven: false, eight: false },
+  { nine: false, ten: false },
+  { eleven: false, twelve: false },
 ];
 
 terminalMap = {
@@ -16,11 +14,16 @@ terminalMap = {
   1: "two",
   2: "three",
   3: "four",
-  resistor: "resistor",
   4: "five",
   5: "six",
   6: "seven",
   7: "eight",
+  8: "nine",
+  9: "ten",
+  10: "eleven",
+  11: "twelve",
+  12: "thirteen",
+  13: "fourteen",
 };
 
 var xValues = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360];
@@ -38,14 +41,12 @@ setTimeout(() => {
 
   if(document.querySelector(".forward")){
     wireTerminalCheck = [
-      { one: false, resistor: false },
-      { resistor: false, seven: false },
-      { eight: false, four: false },
-      { five: false, three: false },
-      { seven: false, five: false },
-      { eight: false, resistor: false },
-      { resistor: false, six: false },
-      { two: false, six: false },
+      { one: false, two: false },
+  { three: false, four: false },
+  { five: false, thirteen: false },
+  { seven: false, eight: false },
+  { nine: false, ten: false },
+  { eleven: false, twelve: false },
     ];
   }else{
     wireTerminalCheck = [
@@ -122,26 +123,27 @@ function keyPut() {
 }
 
 function replacement() {
-  document.getElementById("black-board").classList.add("hidden");
-  document.getElementById("table-board").classList.add("replacement");
+  // document.getElementById("black-board").classList.add("hidden");
+  // document.getElementById("table-board").classList.add("replacement");
 
-  document.getElementById("power-btn").style.stroke = "yellow";
-  document.getElementById("power-btn").style.strokeWidth = "0.25%";
-  document.getElementById("power-btn").onclick = function () {
-    checkbtnPressed(0);
-  };
+  // document.getElementById("power-btn").style.stroke = "yellow";
+  // document.getElementById("power-btn").style.strokeWidth = "0.25%";
+  // document.getElementById("power-btn").onclick = function () {
+  //   checkbtnPressed(0);
+  // };
 
-  document.getElementById("key1").style.display = "block";
-  document.getElementById("key1").classList.add("key-up-down");
-  document.getElementById("key1").onclick = function () {
-    checkbtnPressed(1);
-    keyPut();
-  };
-  document.getElementById("keyBase1").onclick = function () {
-    checkbtnPressed(1);
-    keyPut();
-  };
+  // document.getElementById("key1").style.display = "block";
+  // document.getElementById("key1").classList.add("key-up-down");
+  // document.getElementById("key1").onclick = function () {
+  //   checkbtnPressed(1);
+  //   keyPut();
+  // };
+  // document.getElementById("keyBase1").onclick = function () {
+  //   checkbtnPressed(1);
+  //   keyPut();
+  // };
   sessionStorage.setItem("fullScreen", true);
+  sessionStorage.setItem("circuitComplete",true)
 }
 
 function getRndInteger(min, max) {
@@ -266,8 +268,8 @@ const currreverse = [1,1,1,0,0.4,0.7,2.3,15.5,15.8,25,35.9]
 function rangeSelector(){
   newIndexinterval = setInterval(() => {
 
-    const img = document.getElementById('image1-7');
-    let imgxcor = img.getAttribute("x")
+    // const img = document.getElementById('image1-7');
+    // let imgxcor = img.getAttribute("x")
 
     let newIndex = sessionStorage.getItem("newIndex");// Retrieve newIndex
     newIndex = Math.floor(newIndex / 10); // Map to range [1, 10]
@@ -283,8 +285,8 @@ function rangeSelector(){
     let currtext = document.getElementById("curr");
 
     volttext.textContent = voltarr[newIndex - 1]; // Adjust for 0-based index
-    imgxcor = 77 + ( newIndex * 0.5)  
-    img.setAttribute('x', `${imgxcor}`);
+    // imgxcor = 77 + ( newIndex * 0.5)  
+    // img.setAttribute('x', `${imgxcor}`);
     let curr=0;
     if(sessionStorage.getItem("type")==="false"){
       curr =Math.abs(curarrforward[newIndex-1] - getRndInteger(0.01,0.03)) 
