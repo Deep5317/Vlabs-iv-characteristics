@@ -137,11 +137,11 @@ function replacement() {
   // document.getElementById("black-board").classList.add("hidden");
   // document.getElementById("table-board").classList.add("replacement");
 
-  // document.getElementById("power-btn").style.stroke = "yellow";
-  // document.getElementById("power-btn").style.strokeWidth = "0.25%";
-  // document.getElementById("power-btn").onclick = function () {
-  //   checkbtnPressed(0);
-  // };
+  document.getElementById("on-off-btn").style.stroke = "yellow";
+  document.getElementById("on-off-btn").style.strokeWidth = "0.25%";
+  document.getElementById("on-off-btn").onclick = function () {
+    checkbtnPressed(0);
+  };
 
   // document.getElementById("key1").style.display = "block";
   // document.getElementById("key1").classList.add("key-up-down");
@@ -154,7 +154,7 @@ function replacement() {
   //   keyPut();
   // };
   sessionStorage.setItem("fullScreen", true);
-  sessionStorage.setItem("circuitComplete",true)
+  // sessionStorage.setItem("circuitComplete",true)
 }
 
 function getRndInteger(min, max) {
@@ -164,21 +164,24 @@ function getRndInteger(min, max) {
 function checkbtnPressed(btnNum) {
   btnPressed[btnNum] = true;
   if (btnNum == 0) {
-    document.getElementById("power").textContent = "03.00";
-    document.getElementById("volt").textContent = "00.36";
-    document.getElementById("power-btn").style.strokeWidth = "0%";
+    console.log("check btn called")
+    // document.getElementById("on-off-btn").textContent = "03.00";
+    // document.getElementById("volt").textContent = "00.36";
+    document.getElementById("on-off-btn").style.stroke = "red";
+  document.getElementById("on-off-btn").style.strokeWidth = "1.25%";
+  sessionStorage.setItem("circuitComplete",true)
   }
-  if (btnPressed[0] && btnPressed[1]) {
+  // if (btnPressed[0] && btnPressed[1]) {
     
-    sessionStorage.setItem("circuitComplete",true)
+  //   sessionStorage.setItem("circuitComplete",true)
 
-    // if(document.querySelector(".forward")){
-    //   // startWorkingForward();
-    // }
-    // else{
-    //   // startWorkingReverse();
-    // }
-  }
+  //   // if(document.querySelector(".forward")){
+  //   //   // startWorkingForward();
+  //   // }
+  //   // else{
+  //   //   // startWorkingReverse();
+  //   // }
+  // }
 }
 
 // function keyOp(){
@@ -287,7 +290,6 @@ function rangeSelector(){
     
     // Ensure newIndex stays within bounds of the array
     if (newIndex < 1 || newIndex > 10) {
-      console.error("newIndex out of range");
       return; // Skip this iteration if out of bounds
     }
     
