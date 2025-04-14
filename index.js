@@ -24,6 +24,19 @@ terminalMap = {
   11: "twelve",
   12: "thirteen",
   13: "fourteen",
+  14: "fifteen",
+  15: "sixteen",
+  16: "seventeen",
+  17: "eighteen",
+  18: "nineteen",
+  19: "twenty",
+  20: "twentyone",
+  21: "twentytwo",
+  22: "twentythree",
+  23: "twentyfour",
+  24: "twentyfive",
+  25: "twentysix",
+  26: "twentyseven",
 };
 
 var xValues = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360];
@@ -50,14 +63,12 @@ setTimeout(() => {
     ];
   }else{
     wireTerminalCheck = [
-      { one: false, resistor: false },
-      { resistor: false, seven: false },
-      { seven: false, three: false },
-      { five: false, four: false },
-      { eight: false, five: false },
-      { eight: false, resistor: false },
-      { resistor: false, six: false },
-      { two: false, six: false },
+      { fourteen: false, fifteen: false },
+      { sixteen: false, seventeen: false },
+      { eighteen: false, twentysix: false },
+      { twenty: false, twentyone: false },
+      { twentytwo: false, twentythree: false },
+      { twentyfour: false, twentyfive: false },
     ];
   }
   enablingSequence(sequenceNum);

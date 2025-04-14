@@ -234,13 +234,47 @@ tr{
 .thirteen{
     transform-origin: -1095px 20px;
 }
-.resistor{
-    transform-origin: 215px -300px;
+
+/* reverse biased pulse */
+.fourteen{
+    transform-origin: -1163px 20px;
+}
+.fifteen{
+    transform-origin: -1143px 177px;
+}
+.sixteen{
+    transform-origin:-1163px 90px;
+}
+.seventeen{
+    transform-origin: -1143px 245px;
+}
+.eighteen{
+    transform-origin: -887px 95px;
 }
 
-.capacitor{
-    transform-origin: 540px -270px;
+.twenty{
+    transform-origin: -1042px 177px;
 }
+.twentyone{
+    transform-origin: -823px 95px;
+}
+.twentytwo{
+    transform-origin: -1010px 177px;
+}
+.twentythree{
+    transform-origin: -887px 225px;
+}
+.twentyfour{
+    transform-origin: -945px 177px;
+}
+.twentyfive{
+    transform-origin: -825px 225px;
+}
+.twentysix{
+    transform-origin: -1095px 177px;
+}
+
+
 #g9{
     cursor: pointer;
 }

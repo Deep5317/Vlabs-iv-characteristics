@@ -480,13 +480,15 @@ let idx;
       event.preventDefault(); // Prevent default anchor behavior
       const selectedValue = this.getAttribute('data-value');
       const dropdownButton = document.getElementById('dropdownMenuButton');
-  
+
       // Update the dropdown button's text to show the selected option
       dropdownButton.textContent = this.textContent;
-  
-      // Perform actions with the selected value
-      console.log('Selected bias type:', selectedValue);
-      // Example: Update the SVG displayed
+      
+      // Reset rowCountIndex when graph type changes
+      rowCountIndex = 0;
+      
+      // Update the SVG displayed
       document.getElementById('main-svg').setAttribute('data', selectedValue);
+      console.log('Selected bias type:', selectedValue);
     });
   });
