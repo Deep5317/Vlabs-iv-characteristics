@@ -46,7 +46,7 @@ sequenceNum = 0;
 var rowData = { sno: 0, curr: 0, volts: 0 };
 sessionStorage.setItem("rowData", JSON.stringify(rowData));
 sessionStorage.setItem("fullScreen", false);
-
+sessionStorage.setItem("newIndex", 0);
 
 var btnPressed = [false, false];
 
