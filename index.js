@@ -53,6 +53,7 @@ var btnPressed = [false, false];
 setTimeout(() => {
 
   if(document.querySelector(".forward")){
+    document.getElementById("forward-switch").style.display = "none";
     wireTerminalCheck = [
       { one: false, two: false },
   { three: false, four: false },
@@ -62,6 +63,7 @@ setTimeout(() => {
   { eleven: false, twelve: false },
     ];
   }else{
+    document.getElementById("reverse-switch").style.display = "none";
     wireTerminalCheck = [
       { fourteen: false, fifteen: false },
       { sixteen: false, seventeen: false },
@@ -72,7 +74,7 @@ setTimeout(() => {
     ];
   }
   enablingSequence(sequenceNum);
-}, 2000);
+}, 500);
 
 function enablingSequence(sequenceNum) {
   sessionStorage.setItem("circuitComplete",false)
@@ -143,6 +145,25 @@ function replacement() {
     checkbtnPressed(0);
   };
 
+  if(document.querySelector(".forward")){
+    document.getElementById("reverse-switch-1").style.stroke = "yellow";
+    document.getElementById("reverse-switch-1").style.strokeWidth = "2.25%";
+    document.getElementById("reverse-switch-2").style.stroke = "yellow";
+    document.getElementById("reverse-switch-2").style.strokeWidth = "2.25%";
+    document.getElementById("reverse-switch-1").onclick = function () {
+      checkbtnPressed(1);
+    };
+  }else{
+
+    document.getElementById("forward-switch-1").style.stroke = "yellow";
+    document.getElementById("forward-switch-1").style.strokeWidth = "2.25%";
+    document.getElementById("forward-switch-2").style.stroke = "yellow";
+    document.getElementById("forward-switch-2").style.strokeWidth = "2.25%";
+    document.getElementById("forward-switch-1").onclick = function () {
+      checkbtnPressed(1);
+    };
+  }
+  
   // document.getElementById("key1").style.display = "block";
   // document.getElementById("key1").classList.add("key-up-down");
   // document.getElementById("key1").onclick = function () {
@@ -164,24 +185,25 @@ function getRndInteger(min, max) {
 function checkbtnPressed(btnNum) {
   btnPressed[btnNum] = true;
   if (btnNum == 0) {
-    console.log("check btn called")
     // document.getElementById("on-off-btn").textContent = "03.00";
     // document.getElementById("volt").textContent = "00.36";
     document.getElementById("on-off-btn").style.stroke = "red";
   document.getElementById("on-off-btn").style.strokeWidth = "1.25%";
-  sessionStorage.setItem("circuitComplete",true)
+  
   }
-  // if (btnPressed[0] && btnPressed[1]) {
-    
-  //   sessionStorage.setItem("circuitComplete",true)
+  if(btnNum == 1){
+    if(document.querySelector('.forward')){
+      document.getElementById("reverse-switch").style.display = 'none';  
+      document.getElementById("forward-switch").style.display = 'block';  
+    }else{
+      document.getElementById("forward-switch").style.display = 'none';  
+      document.getElementById("reverse-switch").style.display = 'block';  
+    }
+  }
 
-  //   // if(document.querySelector(".forward")){
-  //   //   // startWorkingForward();
-  //   // }
-  //   // else{
-  //   //   // startWorkingReverse();
-  //   // }
-  // }
+  if (btnPressed[0] && btnPressed[1]) {
+    sessionStorage.setItem("circuitComplete",true)
+  }
 }
 
 // function keyOp(){

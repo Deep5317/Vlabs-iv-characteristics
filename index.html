@@ -186,6 +186,14 @@
                 />
                 </div>
                 <div class="d-flex align-items-center">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary mr-4"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                  >
+                    Graph
+                  </button>
                   <button type="button" id="addtable" class="btn btn-outline-primary mr-4">
                     ADD To Table
                   </button>
@@ -217,6 +225,54 @@
         </div>
       </div>
     </form>
+
+    <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Graph</h1>
+          <button
+            type="button"
+            class="close"
+            aria-label="Close"
+            data-bs-dismiss="modal"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="graph p-4" id="graph" style="margin-top: 10px">
+            <div class="tablehead obs" id="graphhead">
+              <h5>log(Is / T^2) vs 1/T</h5>
+            </div>
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+
+          <!-- <button type="button" class="btn btn-primary" id="downloadgraph">
+            Download Graph
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
